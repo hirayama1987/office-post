@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Qa2</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body class="bg-light">
+    <%if notice %>
+    <div class="alert alert-success alert-dismissible" role="alert">
+    	<button type="button" class="close" data-dismiss="alert" aria-label="閉じる"><span aria-hidden="true">×</span></button>
+    	<!--<strong>warning</strong>-->
+    	<%= notice %>
+    </div>
+    <% end %>
+    <% send_title= yield (:title) %>
+    <main role="main">
+      <%= render 'layouts/header' ,title: send_title %>
+      <%= yield %>
+    </main>
+    <footer class="text-muted bg-white">
+      <div class="container">
+        <p class="float-right">pirarayama Company<br />
+          <% if user_signed_in? %>
+            <strong>User:<%= current_user.username %></strong>
+            <%= link_to 'プロフィール変更', edit_user_registration_path %>
+            <%= link_to 'ご意見一覧ページ', root_path %>
+            <%= link_to '管理画面', questions_path %>
+            <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+          <% else %>
+              <%= link_to '管理者ログイン', new_user_session_path %><br />
+          <% end %>
+        </p>
+      </div>
+    </footer>
+    <script>
+  $( document ).ready(function() {
+    var $grid = $('.grid').masonry({
+      columnWidth:1
+    });
+    // alert("aaa");
+  
+    $('.question_status_list li').on('click', function() {
+      var Swicher = $(this).attr("data-group");
+      // alert(Swicher);
+  
+      $('.grid-item').hide();
+  
+      if(Swicher=="all"){
+        $('.grid-item').show();
+      }else{
+        $("[data-group='"+Swicher+"']").show();
+      }
+  
+        $grid.masonry('layout');
+  
+    });
+  
+  });
+</script>
+  </body>
+</html>

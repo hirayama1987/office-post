@@ -1,0 +1,11 @@
+<section class="jumbotron text-center">
+  <div class="container">
+    <h1 class="jumbotron-heading">OFFICE-POST</h1>
+    <% if controller.controller_name=="pages" %>
+      <p class="lead text-muted">会社へのご意見やご要望をご自由に投稿して下さい。<br />個人が特定されることはありません。</p>
+    <% end %>
+    <% if request.path_info=="/" %>
+      <p class="btn btn-danger btn_new_question btn-lg"><%= link_to '投稿する', pages_new_path %></p>
+    <% end %>
+  </div>
+</section>

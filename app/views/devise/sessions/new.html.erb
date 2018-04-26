@@ -1,0 +1,35 @@
+<div class="container text-center new_question_block">
+  <div class="container text-center">
+    <h3 class="jumbotron-heading">管理者ログイン</h3>
+  </div>
+  <div class="row d-flex justify-content-center">
+    <div class="col-xs-6 col-sm-4 col-md-6">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="field">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
+      
+        <div class="field">
+          <%= f.label :password %><br />
+          <%= f.password_field :password, autocomplete: "off" %>
+        </div>
+      
+        <% if devise_mapping.rememberable? -%>
+          <div class="field">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+          </div>
+        <% end -%>
+      
+        <div class="actions">
+          <%= f.submit class:'btn btn-primary',value: "Log in",data: { disable_with: "送信中..." } %>
+        </div>
+      <% end %>
+      <%= link_to '戻る', root_path %>
+      <%= 
+      # render "devise/shared/links" 
+      %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<%= form_with(model: question, local: true) do |form| %>
+  <% if question.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h2>
+      <ul>
+      <% question.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <div class="field">
+      <%= form.label 'ご意見やご要望' %>
+      <%= form.text_area :question, id: :question_question, class:'form-control',:placeholder => "こちらに入力してください。" %>
+    </div>
+    <div class="field">
+      <%= form.label '回答' %>
+      <%= form.text_area :answer, id: :question_answer, class:'form-control',:placeholder => "回答を入力してください。" %>
+    </div>
+    <div class="field">
+      <%= form.select :status_id, @statuses.map{|t| [t.name,t.id]} %>
+    </div>
+  </div>
+  <div class="actions">
+    <%= form.submit class:'btn btn-primary btn-lg',value:'送信する',data: { disable_with: "送信中..." } %>
+  </div>
+<% end %>

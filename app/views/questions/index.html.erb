@@ -1,0 +1,47 @@
+<div class="container new_question_block back_office_show_all bg-light">
+  <div class="container text-center">
+    <h3 class="jumbotron-heading">ご意見一覧 管理画面</h3>
+        <ul class="question_status_list">
+          <li class="btn btn-light my-2" data-group="all">全て</li>
+          <li class="btn btn-danger my-2" data-group="new_issue">新規</li>
+          <li class="btn btn-primary my-2" data-group="done">改善しました</li>
+          <li class="btn btn-success my-2" data-group="pending">検討中</li>
+          <li class="btn btn-secondary my-2" data-group="reject">対応なし</li>
+        </ul>
+  </div>
+
+  <div class="row d-flex justify-content-center issues_all">
+      <% @questions.each do |question| %>
+        <div class="col-md-12 box-shadow issue card grid-item" data-group="<%= question.status.eng_name %>">
+          <p class="back_qa_status bg-<%= question.status.eng_name %>"><%= question.status.name %></p>
+          <div class="row d-flex justify-content-center">
+            <div class="col-md-5 card-body">
+              <p class="q_or_a">ご意見 NO. <%= question.id %></p>
+              <p class="card-text"><%= question.question %></p>
+            </div>
+            <div class="col-md-5 card-body">
+              <p class="q_or_a">回答</p>
+              <p class="card-text"><% if question.answer %><%= question.answer %><% end %></p>
+            </div>
+            <div class="col-md-2 card-body">
+              <% if question.answer %>
+                <div class="text-center">
+                  <p class="btn btn-primary btn_new_question"><%= link_to '編集する', edit_question_path(question) %></p>
+                </div>
+              <% else %>
+                <div class="text-center">
+                  <p class="btn btn-danger btn_new_question btn-lg"><%= link_to '回答する', edit_question_path(question) %></p>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <div class="row d-flex justify-content-center">
+            <div class="col-md-12 card-body">
+              <small class="text-muted">作成日 : <%= question.created_at.strftime('%Y/%m/%d') %></small>&nbsp;
+              <small class="text-muted">更新日 : <%= question.updated_at.strftime('%Y/%m/%d') %></small>
+            </div>
+          </div>
+        </div>
+      <% end %>
+  </div>
+</div>

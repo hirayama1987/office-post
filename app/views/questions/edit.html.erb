@@ -1,0 +1,20 @@
+<div class="container text-center new_question_block">
+    <div class="container text-center">
+        <h3 class="jumbotron-heading">ご意見NO.<%= params[:id] %></h3>
+    </div>
+  
+  <div class="row d-flex justify-content-center">
+    <div class="col-xs-6 col-sm-4 col-md-6">
+      <%= render 'form', question: @question %>
+      <div class="d-flex justify-content-between">
+       <%= link_to '戻る', questions_path %>
+        <p class="btn btn-danger btn_new_question">
+            <%= link_to '削除する', question_url(@question.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+        </p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+      

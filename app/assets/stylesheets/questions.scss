@@ -1,0 +1,45 @@
+// Place all the styles related to the questions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.alert {
+    margin-bottom: 0px !important;
+    position: absolute!important;
+    width: 100%;
+    .text-muted{
+        text-align: center;
+    }
+}
+
+
+.jumbotron{
+    margin-bottom: 0 !important;
+}
+
+
+.btn_new_question a{
+    color: #FFF!important;
+}
+
+.btn_new_question a:hover {
+    color: #fff;
+    background:none!important;
+    text-decoration: none!important;
+}
+
+.btn_new_question a{
+    display: block;
+}
+
+.new_question_block{
+    margin: 50px 0;
+}
+
+.new_question_block #question_question{
+    height: 100px;
+}
+
+.issue{
+    min-height: 150px;
+    margin-bottom: 30px;
+    padding-top: 30px;
+}

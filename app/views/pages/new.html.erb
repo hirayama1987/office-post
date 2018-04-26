@@ -1,0 +1,17 @@
+<div class="container text-center new_question_block">
+  <div class="row d-flex justify-content-center">
+    <div class="col-xs-6 col-sm-4 col-md-6">
+      <%= render 'form', question: @question %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-6 col-sm-4 col-md-6">
+       <%= link_to '戻る', root_path %>
+    </div>
+  </div>
+</div>
+<script>
+  $(document).ready( function(){
+    $('#question_question').eq(0).focus();
+  });
+</script>
