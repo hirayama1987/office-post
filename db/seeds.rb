@@ -10,5 +10,5 @@ require 'csv'
 
 csv_data = CSV.read('db/test_question.csv',encoding: 'Shift_JIS:UTF-8', headers: true)
 csv_data.each do |data|
-  Question.create!(data.to_hash)
+  Question.create(data.to_hash)
 end
