@@ -1,5 +1,6 @@
 class StatusesController < ApplicationController
   before_action :set_status, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user
 
   # GET /statuses
   # GET /statuses.json
@@ -70,5 +71,11 @@ class StatusesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def status_params
       params.require(:status).permit(:name,:eng_name)
+    end
+    
+    def authenticate_user
+      if !user_signed_in? then
+        redirect_to new_user_session_path , notice: 'ログインしてください。'
+      end
     end
 end
