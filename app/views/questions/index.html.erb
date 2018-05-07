@@ -38,7 +38,8 @@
           <div class="row d-flex justify-content-center">
             <div class="col-md-12 card-body">
               <small class="text-muted">作成日 : <%= question.created_at.strftime('%Y/%m/%d') %></small>&nbsp;
-              <small class="text-muted">更新日 : <%= question.updated_at.strftime('%Y/%m/%d') %></small>
+              <small class="text-muted">更新日 : <%= question.updated_at.strftime('%Y/%m/%d') %></small>&nbsp;
+              <small class="text-muted">投稿者 : <%= question.user.try(:username) %></small>
             </div>
           </div>
         </div>

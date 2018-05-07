@@ -11,6 +11,12 @@ class PagesController < ApplicationController
     @question = Question.new
   end
   
+  def user
+    @show_username =User.find_by(username:params[:username]) 
+    @questions = Question.where(user_id: @show_username.id).where.not(status_id: 1).order('id DESC')
+    render "show_all"
+  end
+  
     # POST /questions
   # POST /questions.json
   def create

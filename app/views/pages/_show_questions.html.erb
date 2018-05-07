@@ -1,0 +1,25 @@
+  <div class="container" id="my_view">
+    <div class="row grid">
+      <% @questions.each do |question| %>
+          <div v-for="issue in issues" class="col-md-4 grid-item" data-group="<%= question.status.eng_name %>">
+            <div class="card mb-4 box-shadow">
+              <p class="qa_status bg-<%= question.status.eng_name %>"><%= question.status.name %></p>
+              <div class="card-body">
+                <p class="q_or_a">ご意見 NO. <%= question.id %></p>
+                <p class="card-text"><%= question.question %></p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <small class="text-muted">投稿者名 : <a href="/pages/<%= question.user.try(:username) %>"><%= question.user.try(:username) %></a></small>
+                </div>
+              </div>
+              <div class="card-body">
+                <p class="q_or_a">回答</p>
+                <p class="card-text"><%= question.answer %></p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <small class="text-muted">更新日 : <%= question.updated_at.strftime('%Y/%m/%d') %></small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% end %>
+    </div>
+  </div>

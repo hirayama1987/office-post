@@ -26,7 +26,15 @@ class QuestionsController < ApplicationController
   # POST /questions
   # POST /questions.json
   def create
-    @question = Question.new(question_params)
+    
+    question_params2= question_params
+    
+    # ユーザーがログインしていたら、paramsにIDを追加する
+    if user_signed_in? then 
+      question_params2["user_id"] = current_user.id
+    end
+    
+    @question = Question.new(question_params2)
     path = Rails.application.routes.recognize_path(request.referer)
     
     respond_to do |format|
@@ -39,7 +47,9 @@ class QuestionsController < ApplicationController
           format.json { render :show, status: :created, location: @question }
       else
         if(path[:controller]=="pages") then
+          p @question.errors
           format.html { redirect_to pages_new_path, errors: @question.errors}
+          
         end
           format.html { render :new }
           format.json { render json: @question.errors, status: :unprocessable_entity }
@@ -81,11 +91,12 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:question, :answer, :status_id)
+      params.require(:question).permit(:question, :answer, :status_id, :user_id)
     end
     
     def set_statuses
       @statuses = Status.all
+      @users = User.all
     end
     
     def authenticate_user

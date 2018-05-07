@@ -1,0 +1,18 @@
+  <div class="container text-center item_selector">
+    
+      
+      <% if show_username.try(:username) %>
+        <h3 class="jumbotron-heading"><%= show_username.try(:username) %>さんの回答済みご意見一覧</h3>
+        <%= link_to '一覧ページに戻る', root_path %>
+      <% else %>
+        <h3 class="jumbotron-heading">回答済みご意見一覧</h3>
+      <% end %>
+      
+        <ul class="question_status_list">
+          <li class="btn btn-light my-2" data-group="all">全て</li>
+          <li class="btn btn-primary my-2" data-group="done">改善しました</li>
+          <li class="btn btn-success my-2" data-group="pending">検討中</li>
+          <li class="btn btn-secondary my-2" data-group="reject">対応なし</li>
+        </ul>
+        
+  </div>
