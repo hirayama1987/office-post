@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   get 'pages/show_all'
   get 'pages/new'
-  get 'pages/:username', to: 'pages#user'
+  get 'pages/user/:username', to: 'pages#user'
   
 
   resources :statuses
